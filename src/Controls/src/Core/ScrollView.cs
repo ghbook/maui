@@ -7,7 +7,7 @@ using Microsoft.Maui.Graphics;
 namespace Microsoft.Maui.Controls
 {
 	[ContentProperty(nameof(Content))]
-	public class ScrollView : Layout, IScrollViewController, IElementConfiguration<ScrollView>, IFlowDirectionController
+	public partial class ScrollView : Layout, IScrollViewController, IElementConfiguration<ScrollView>, IFlowDirectionController
 	{
 		#region IScrollViewController
 
@@ -128,6 +128,8 @@ namespace Microsoft.Maui.Controls
 				if (_content != null)
 					InternalChildren.Add(_content);
 				OnPropertyChanged();
+
+				Handler?.UpdateValue(nameof(Content));
 			}
 		}
 
