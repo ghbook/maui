@@ -353,6 +353,8 @@ namespace Microsoft.Maui.Controls
 		{
 			CheckTaskCompletionSource();
 			ScrollToRequested?.Invoke(this, e);
+
+			Handler?.Invoke(nameof(IScrollView.RequestScrollTo), e.ToRequest());
 		}
 	}
 }
