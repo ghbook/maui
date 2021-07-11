@@ -12,5 +12,6 @@ namespace Microsoft.Maui.Handlers
 		public static void MapHorizontalScrollBarVisibility(IViewHandler handler, IScrollView scrollView) { }
 		public static void MapVerticalScrollBarVisibility(IViewHandler handler, IScrollView scrollView) { }
 		public static void MapOrientation(IViewHandler handler, IScrollView scrollView) { }
+		public static void MapRequestScrollTo(ScrollViewHandler handler, IScrollView scrollView, object args) { }
 	}
 }
