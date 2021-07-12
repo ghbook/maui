@@ -25,9 +25,7 @@ namespace Microsoft.Maui.Controls.Layout2
 
 		IEnumerator IEnumerable.GetEnumerator() => _children.GetEnumerator();
 
-#pragma warning disable CS0672 // Member overrides obsolete member
-		public override SizeRequest GetSizeRequest(double widthConstraint, double heightConstraint)
-#pragma warning restore CS0672 // Member overrides obsolete member
+		protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
 		{
 			var size = (this as IFrameworkElement).Measure(widthConstraint, heightConstraint);
 			return new SizeRequest(size);
