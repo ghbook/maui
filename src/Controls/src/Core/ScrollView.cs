@@ -276,7 +276,17 @@ namespace Microsoft.Maui.Controls
 					break;
 			}
 
-			SizeRequest contentRequest = Content.Measure(widthConstraint, heightConstraint, MeasureFlags.IncludeMargins);
+			SizeRequest contentRequest;
+
+			if (Content is IFrameworkElement fe)
+			{
+				contentRequest = fe.Handler.GetDesiredSize(widthConstraint, heightConstraint);
+			}
+			else
+			{
+				contentRequest = Content.Measure(widthConstraint, heightConstraint, MeasureFlags.IncludeMargins);
+			}
+
 			contentRequest.Minimum = new Size(Math.Min(40, contentRequest.Minimum.Width), Math.Min(40, contentRequest.Minimum.Height));
 
 			return contentRequest;

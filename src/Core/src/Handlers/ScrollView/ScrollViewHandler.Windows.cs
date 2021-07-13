@@ -18,7 +18,6 @@ namespace Microsoft.Maui.Handlers
 		{
 			base.ConnectHandler(nativeView);
 			nativeView.ViewChanged += ViewChanged;
-			
 		}
 
 		protected override void DisconnectHandler(ScrollViewer nativeView)
