@@ -25,7 +25,7 @@ namespace Microsoft.Maui.Controls.Layout2
 
 		IEnumerator IEnumerable.GetEnumerator() => _children.GetEnumerator();
 
-		protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
+		public override SizeRequest Measure(double widthConstraint, double heightConstraint, MeasureFlags flags = MeasureFlags.None)
 		{
 			var size = (this as IFrameworkElement).Measure(widthConstraint, heightConstraint);
 			return new SizeRequest(size);
