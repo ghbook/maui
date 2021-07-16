@@ -27,7 +27,7 @@ namespace Microsoft.Maui.Layouts
 		{
 			var structure = _gridStructure ?? new GridStructure(Grid, childBounds.Width, childBounds.Height);
 
-			foreach (var view in Grid.Children)
+			foreach (var view in Grid)
 			{
 				if (view.Visibility == Visibility.Collapsed)
 				{
@@ -92,7 +92,7 @@ namespace Microsoft.Maui.Layouts
 					}
 				}
 
-				_children = _grid.Children.Where(child => child.Visibility != Visibility.Collapsed).ToArray();
+				_children = _grid.Where(child => child.Visibility != Visibility.Collapsed).ToArray();
 
 				// We'll ignore any collapsed child views during layout
 				_cells = new Cell[_children.Length];
@@ -393,7 +393,7 @@ namespace Microsoft.Maui.Layouts
 						if (cellCheck(cell)) // Check whether this cell should count toward the type of star value were measuring
 						{
 							// Update the star width if the view in this cell is bigger
-							starSize = Math.Max(starSize, dimension(_grid.Children[cell.ViewIndex].DesiredSize));
+							starSize = Math.Max(starSize, dimension(_grid[cell.ViewIndex].DesiredSize));
 						}
 					}
 				}

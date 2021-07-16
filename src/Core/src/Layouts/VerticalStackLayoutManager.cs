@@ -12,16 +12,16 @@ namespace Microsoft.Maui.Layouts
 
 		public override Size Measure(double widthConstraint, double heightConstraint)
 		{
-			var measure = Measure(widthConstraint, Stack.Spacing, Stack.Children);
+			var measure = Measure(widthConstraint, Stack.Spacing, Stack);
 
 			var finalHeight = ResolveConstraints(heightConstraint, Stack.Height, measure.Height);
 
 			return new Size(measure.Width, finalHeight);
 		}
 
-		public override void ArrangeChildren(Rectangle bounds) => Arrange(bounds.Width, Stack.Spacing, Stack.Children);
+		public override void ArrangeChildren(Rectangle bounds) => Arrange(bounds.Width, Stack.Spacing, Stack);
 
-		static Size Measure(double widthConstraint, int spacing, IReadOnlyList<IView> views)
+		static Size Measure(double widthConstraint, int spacing, IList<IView> views)
 		{
 			double totalRequestedHeight = 0;
 			double requestedWidth = 0;

@@ -12,7 +12,7 @@ namespace Microsoft.Maui.Layouts
 
 		public override Size Measure(double widthConstraint, double heightConstraint)
 		{
-			var measure = Measure(heightConstraint, Stack.Spacing, Stack.Children);
+			var measure = Measure(heightConstraint, Stack.Spacing, Stack);
 
 			var finalWidth = ResolveConstraints(widthConstraint, Stack.Width, measure.Width);
 
@@ -23,17 +23,17 @@ namespace Microsoft.Maui.Layouts
 		{
 			if (Stack.FlowDirection == FlowDirection.LeftToRight)
 			{
-				ArrangeLeftToRight(bounds.Height, Stack.Spacing, Stack.Children);
+				ArrangeLeftToRight(bounds.Height, Stack.Spacing, Stack);
 			}
 			else
 			{
 				// We _could_ simply reverse the list of child views when arranging from right to left, 
 				// but this way we avoid extra list and enumerator allocations
-				ArrangeRightToLeft(bounds.Height, Stack.Spacing, Stack.Children);
+				ArrangeRightToLeft(bounds.Height, Stack.Spacing, Stack);
 			}
 		}
 
-		static Size Measure(double heightConstraint, int spacing, IReadOnlyList<IView> views)
+		static Size Measure(double heightConstraint, int spacing, IList<IView> views)
 		{
 			double totalRequestedWidth = 0;
 			double requestedHeight = 0;
@@ -58,7 +58,7 @@ namespace Microsoft.Maui.Layouts
 			return new Size(totalRequestedWidth, requestedHeight);
 		}
 
-		static void ArrangeLeftToRight(double height, int spacing, IReadOnlyList<IView> views)
+		static void ArrangeLeftToRight(double height, int spacing, IList<IView> views)
 		{
 			double xPosition = 0;
 
@@ -75,7 +75,7 @@ namespace Microsoft.Maui.Layouts
 			}
 		}
 
-		static void ArrangeRightToLeft(double height, int spacing, IReadOnlyList<IView> views)
+		static void ArrangeRightToLeft(double height, int spacing, IList<IView> views)
 		{
 			double xPostition = 0;
 
